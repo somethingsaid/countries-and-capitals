@@ -1,0 +1,16 @@
+{
+  "name": "countries-capitals",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css:compile": "node-sass app/style.scss app/style.css",
+    "watch": "chokidar app/style.scss -c 'npm run css:compile'"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "node-sass": "^3.7.0"
+  }
+}
