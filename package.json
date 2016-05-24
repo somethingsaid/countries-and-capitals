@@ -12,6 +12,7 @@
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
     "gulp": "^3.9.1",
+    "gulp-connect": "^4.0.0",
     "node-sass": "^3.7.0"
   }
 }
