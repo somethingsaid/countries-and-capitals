@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="ccApp">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,16 @@
   <title>Countries And Capitals</title>
 </head>
 <body>
-  <h1>Hello World!</h1>
+  <section class="navbar">
+    <h1>Countries & Capitals</h1>
+  </section>
+  <section class="views" ng-view></section>
 </body>
 <!-- build:js ./_assets/combined.js -->
-<script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
+<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="./bower_components/angular-route/angular-route.min.js"></script>
 <script type="text/javascript" src="./bower_components/angular-animate/angular-animate.min.js"></script>
+<script type="text/javascript" src="./cc_app.js"></script>
 
 <!-- endbuild -->
 </html>
