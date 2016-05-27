@@ -1,12 +1,20 @@
 <div class="countries-listing">
 	<table>
 		<tr>
-			<th>Country</th>
+			<th>Name</th>
+			<th>Country Code</th>
+			<th>Capital</th>
+			<th>Area in sq.km</th>
 			<th>Population</th>
+			<th>Continent</th>
 		</tr>
-		<tr>
-			<td>Papua New Guinea</td>
-			<td>10000000</td>
+		<tr ng-repeat="country in countries">
+			<td>{{country.countryName}}</td>
+			<td>{{country.countryCode}}</td>
+			<td>{{country.capital}}</td>
+			<td>{{country.areaInSqKm}}</td>
+			<td>{{country.population}}</td>
+			<td>{{country.continent}}</td>
 		</tr>
 	</table>
 	<a href="#/">About This App</a>
