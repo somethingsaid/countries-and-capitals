@@ -8,7 +8,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 		templateUrl: './countries/countries.html',
 		controller: 'countriesCtrl'
 	})
-	.when('countries/:countryCode', {
+	.when('/countries/:countryCode', {
 		templateUrl: './country-code/country_code.html',
 		controller: 'countryCodeCtrl',
 		resolve: {
