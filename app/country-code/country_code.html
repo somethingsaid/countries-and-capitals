@@ -1,5 +1,27 @@
 <div class='country-info'>
 	<h1>Some data about {{countryCode}}</h1>
+	<table>
+		<tr>
+			<td>Population of Country:</td>
+			<td>{{country.population}}</td>
+		</tr>
+		<tr>
+			<td>Area:</td>
+			<td>{{country.area}}</td>
+		</tr>
+		<tr>
+			<td>Capital:</td>
+			<td>{{country.capital}}</td>
+		</tr>
+		<tr>
+			<td>Population of Capital:</td>
+			<td>{{capital.population}}</td>
+		</tr>
+		<tr>
+			<td>{{capital.numNeighbours}} neighbour(s):</td>
+			<td>{{capital.neighbours}}</td>
+		</tr>
+	</table>
 	<button><a href="#/">Home</a></button>
 	<button><a href="#/countries">Browse Countries</a></button>
 </div>
