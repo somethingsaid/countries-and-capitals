@@ -8,8 +8,18 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 		templateUrl: './countries/countries.html',
 		controller: 'countriesCtrl'
 	})
+	.when('countries/:countryCode', {
+		templateUrl: './country-code/country_code.html',
+		controller: 'countryCodeCtrl',
+		resolve: {
+			countryCode: function($route) {
+				var countryCode = $route.current.params.countryCode;
+				return countryCode;
+			}
+		}
+	}) 
 	.when('/error', {
-		template: '<p>Error - Page Not Found</p>'
+		template: '<p>Error - Page Not Found</p><button><a href="#/">Home</a></button><button><a href="#/countries">Browse Countries</a></button>'
 	})
 	.otherwise('/error');
 }])
@@ -33,4 +43,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   }, function(response) {
   	console.log('Something is wrong');
   });
+}])
+.controller('countryCodeCtrl', ['$http', '$scope', 'countryCode', function($http, $scope, countryCode) {
+	$scope.countryCode = countryCode;
 }]);
