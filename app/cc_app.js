@@ -51,7 +51,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 	$http({
 		url: 'http://api.geonames.org/countryInfo?',
   	method: 'GET',
-  	params: $scope.countryParams
+  	params: countryParams
 	})
 	.then(function(response) {
 		$scope.country = response.data.geonames;
