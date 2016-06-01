@@ -1,6 +1,7 @@
 <div class="countries-listing">
 	<table>
 		<tr>
+			<th>Index</th>
 			<th>Name</th>
 			<th>Country Code</th>
 			<th>Capital</th>
@@ -9,6 +10,7 @@
 			<th>Continent</th>
 		</tr>
 		<tr ng-repeat="country in countries">
+			<td><a ng-href="#/countries/{{country.countryCode}}">{{countries.indexOf(country)}}</a></td>
 			<td><a ng-href="#/countries/{{country.countryCode}}">{{country.countryName}}</a></td>
 			<td><a ng-href="#/countries/{{country.countryCode}}">{{country.countryCode}}</a></td>
 			<td><a ng-href="#/countries/{{country.countryCode}}">{{country.capital}}</a></td>

@@ -1,17 +1,18 @@
 <div class='country-info'>
-	<h1>Some data about {{countryCode}}</h1>
+	<h1>Some data about {{countries[0].countryName}}</h1>
+	<!-- Insert country flag image via: <img src="http://www.geonames.org/flags/x/??.gif" />, where ?? stands for a two letter, lowercase country code. -->
 	<table>
 		<tr>
 			<td>Population of Country:</td>
-			<td>{{country.population}}</td>
+			<td>{{countries[0].population}}</td>
 		</tr>
 		<tr>
 			<td>Area:</td>
-			<td>{{country.area}}</td>
+			<td>{{countries[0].areaInSqKm}}</td>
 		</tr>
 		<tr>
 			<td>Capital:</td>
-			<td>{{country.capital}}</td>
+			<td>{{countries[0].capital}}</td>
 		</tr>
 		<tr>
 			<td>Population of Capital:</td>
