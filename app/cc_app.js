@@ -1,5 +1,9 @@
 angular.module('ccApp', ['ngRoute', 'ngAnimate'])
-.constant("countryListParams", {username: 'bckwong', lang: 'en', type: 'JSON'})
+.constant("Params", function() {
+	this.username = 'bckwong';
+	this.lang = 'en';
+	this.type = 'JSON';
+})
 .config(['$routeProvider', function($routeProvider) {
 	$routeProvider.when('/', {
 		templateUrl: './home/home.html',
@@ -27,13 +31,14 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 .controller('homeCtrl', ['$scope', function($scope) {
 	// empty for now
 }])
-.controller('countriesCtrl', ['$http', '$scope', 'countryListParams', function($http, $scope, countryListParams) {
-	console.log(countryListParams);
+.controller('countriesCtrl', ['$http', '$scope', 'Params', '$rootScope', function($http, $scope, Params, $rootScope) {
+	$rootScope.countryListParams = new Params();
+	console.log($rootScope.countryListParams);
 	// Making a call to return high level information on all available countries
   $http({
   	url: 'http://api.geonames.org/countryInfo?',
   	method: 'GET',
-  	params: countryListParams
+  	params: $rootScope.countryListParams
   })
   .then(function(response) {
   	$scope.countries = response.data.geonames;
@@ -42,12 +47,11 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   	console.log('Something is wrong');
   });
 }])
-.controller('countryCodeCtrl', ['$http', '$scope', 'countryCode', 'countryListParams', function($http, $scope, countryCode, countryListParams) {
+.controller('countryCodeCtrl', ['$http', '$scope', 'countryCode', 'Params', '$rootScope', function($http, $scope, countryCode, Params, $rootScope) {
 	// Appending country to parameters for specific search
-	var countryParams = countryListParams;
+	var countryParams = new Params();
 	countryParams.country = countryCode;
 	console.log("Country specific parameters: " + JSON.stringify(countryParams));
-	console.log("Original parameters for all countries: " + JSON.stringify(countryListParams));
 	$http({
 		url: 'http://api.geonames.org/countryInfo?',
   	method: 'GET',
