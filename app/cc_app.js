@@ -52,6 +52,22 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 	var countryParams = new Params();
 	countryParams.country = countryCode;
 	console.log("Country specific parameters: " + JSON.stringify(countryParams));
+	// Returning specific country neighbour information
+	$http({
+		url: 'http://api.geonames.org/neighbours?',
+		method: 'GET',
+		params: countryParams
+	})
+	.then(function(response) {
+		$scope.neighbours = response.data.geonames;
+		console.log("Number of neighbours: " + $scope.neighbours.length);
+		for (var i = 0; i < $scope.neighbours.length; i++) {
+			console.log("Neighbour " + (i + 1) + ": " + $scope.neighbours[i].countryName);
+		}
+	}, function(response) {
+		'Something went wrong when retrieving list of country neighbours';
+	});
+
 	// Returning specific country information
 	$http({
 		url: 'http://api.geonames.org/countryInfo?',
@@ -61,6 +77,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 	.then(function(response) {
 		$scope.country = response.data.geonames;
 		console.log($scope.country);
+
 		// Piecing together capital city parameters
 		var capitalParams = {
   	  q: $scope.country[0].capital,
@@ -83,7 +100,6 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   	  	return item.fcodeName === 'capital of a political entity';
   	  });
   	  console.log ("Number of results: " + $scope.capital.length + "\nFiltered list of capitals: " + JSON.stringify($scope.capital));
-
     }, function(response) {
   	  console.log('Something went wrong with the capital query');
     });

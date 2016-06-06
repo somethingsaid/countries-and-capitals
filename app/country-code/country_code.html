@@ -19,8 +19,12 @@
 			<td>{{capital[0].population | number}}</td>
 		</tr>
 		<tr>
-			<td>{{capital.numNeighbours}} neighbour(s):</td>
-			<td>{{capital.neighbours}}</td>
+			<td>{{neighbours.length}} neighbour(s):</td>
+			<td>
+				<ul>
+				  <li ng-repeat="neighbour in neighbours"><a ng-href='#/countries/{{neighbour.countryCode}}'>{{neighbour.countryName}}</a></li>
+			  </ul>
+			</td>
 		</tr>
 	</table>
 	<button><a href="#/">Home</a></button>
