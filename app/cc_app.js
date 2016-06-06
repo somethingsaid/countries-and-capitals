@@ -61,30 +61,33 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 	.then(function(response) {
 		$scope.country = response.data.geonames;
 		console.log($scope.country);
+		// Piecing together capital city parameters
+		var capitalParams = {
+  	  q: $scope.country[0].capital,
+  	  name_equals: $scope.country[0].capital,
+  	  country: $scope.country[0].countryCode,
+  	  isNameRequired: true,
+  	  maxRows: 10,
+  	  username: 'bckwong'
+    };
+    $http({
+  	  url: 'http://api.geonames.org/searchJSON?',
+  	  method: 'GET',
+      params: capitalParams
+    })
+    .then(function(response) {
+  	  var capitalSet = response.data.geonames;
+  	  console.log(capitalSet);
+  	  // filter through array, return where object's fcodeName is 'capital of a political entity';
+  	  $scope.capital = capitalSet.filter(function(item) {
+  	  	return item.fcodeName === 'capital of a political entity';
+  	  });
+  	  console.log ("Number of results: " + $scope.capital.length + "\nFiltered list of capitals: " + JSON.stringify($scope.capital));
+
+    }, function(response) {
+  	  console.log('Something went wrong with the capital query');
+    });
 	}, function(response) {
 		console.log('Something is wrong');
 	});
-  // Returning capital information, this can only happen after country data is returned (recall: callback hell)
-  
-  var capitalParams = {
-  	q: $scope.country[0].capital,
-  	name_equals: $scope.country[0].capital,
-  	country: $scope.country[0].countryCode,
-  	isNameRequired: true,
-  	maxRows: 10,
-  	username: 'bckwong'
-  };
-  /*
-  $http({
-  	url: 'http://api.geonames.org/searchJSON?',
-  	method: 'GET',
-    params: capitalParams
-  })
-  .then(function(response) {
-  	$scope.capital = response.data.geonames;
-  	console.log($scope.capital);
-  }, function(response) {
-  	console.log('Something went wrong with the capital query');
-  });
-*/
 }]);
