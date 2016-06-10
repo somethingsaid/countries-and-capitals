@@ -52,7 +52,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 	var countryParams = new Params();
 	countryParams.country = countryCode;
 	console.log("Country specific parameters: " + JSON.stringify(countryParams));
-	// Returning specific country neighbour information
+	// Call and Return specific country neighbour information
 	$http({
 		url: 'http://api.geonames.org/neighbours?',
 		method: 'GET',
@@ -78,7 +78,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 		$scope.country = response.data.geonames;
 		console.log($scope.country);
 
-		// Piecing together capital city parameters
+		// Piecing together capital city parameters from country API response
 		var capitalParams = {
   	  q: $scope.country[0].capital,
   	  name_equals: $scope.country[0].capital,
@@ -87,6 +87,7 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
   	  maxRows: 10,
   	  username: 'bckwong'
     };
+    // Call Capital City API
     $http({
   	  url: 'http://api.geonames.org/searchJSON?',
   	  method: 'GET',
