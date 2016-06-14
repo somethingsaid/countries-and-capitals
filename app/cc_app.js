@@ -28,44 +28,45 @@ angular.module('ccApp', ['ngRoute', 'ngAnimate'])
 	})
 	.otherwise('/error');
 }])
+.factory('getCountryData', ['$http', function($http) {
+	return function(endpoint, parameters) {
+		return $http({
+			url: endpoint || 'http://api.geonames.org/countryInfo?',
+			method: 'GET',
+			params: parameters
+		});
+	}
+}])
 .controller('homeCtrl', ['$scope', function($scope) {
 	// empty for now
 }])
-.controller('countriesCtrl', ['$http', '$scope', 'Params', '$rootScope', function($http, $scope, Params, $rootScope) {
-	$rootScope.countryListParams = new Params();
-	console.log($rootScope.countryListParams);
-	// Making a call to return high level information on all available countries
-  $http({
-  	url: 'http://api.geonames.org/countryInfo?',
-  	method: 'GET',
-  	params: $rootScope.countryListParams
-  })
-  .then(function(response) {
+.controller('countriesCtrl', ['$http', '$scope', '$rootScope', 'Params', 'getCountryData', function($http, $scope, $rootScope, Params, getCountryData) {
+	var countryListParams = new Params();
+	console.log(countryListParams);
+  getCountryData(null, countryListParams).then(function(response) {
   	$scope.countries = response.data.geonames;
   	console.log($scope.countries);
   }, function(response) {
   	console.log('Something is wrong');
   });
 }])
-.controller('countryCodeCtrl', ['$http', '$scope', 'countryCode', 'Params', '$rootScope', function($http, $scope, countryCode, Params, $rootScope) {
+.controller('countryCodeCtrl', ['$http', '$scope', 'countryCode', 'Params', 'getCountryData', function($http, $scope, countryCode, Params, getCountryData) {
 	// Appending country to parameters for specific search
 	var countryParams = new Params();
 	countryParams.country = countryCode;
 	console.log("Country specific parameters: " + JSON.stringify(countryParams));
+	var neighbourUrl = 'http://api.geonames.org/neighbours?';
+	var capitalUrl = 'http://api.geonames.org/searchJSON?';
+
 	// Call and Return specific country neighbour information
-	$http({
-		url: 'http://api.geonames.org/neighbours?',
-		method: 'GET',
-		params: countryParams
-	})
-	.then(function(response) {
+	getCountryData(neighbourUrl, countryParams).then(function(response) {
 		$scope.neighbours = response.data.geonames;
 		console.log("Number of neighbours: " + $scope.neighbours.length);
 		for (var i = 0; i < $scope.neighbours.length; i++) {
 			console.log("Neighbour " + (i + 1) + ": " + $scope.neighbours[i].countryName);
 		}
 	}, function(response) {
-		'Something went wrong when retrieving list of country neighbours';
+			console.log("Something went wrong when retrieving list of neighbours");
 	});
 
 	// Returning specific country information
