@@ -1,0 +1,51 @@
+$black: #191919;
+$grey: #DFE2DB;
+$yellow: #FFF056;
+$white: #FFFFFF;
+
+// Standard declarations
+html {
+	box-sizing: border-box;
+	background-color: $grey;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+// Clear all default link decorations
+a {
+	text-decoration: none;
+}
+
+button a {
+	color: $yellow;
+	:visited {
+		color: $yellow;
+	}
+}
+// Main heading declarations
+.title h1 {
+	color: $black;
+}
+
+.title h1::before {
+	content: "Countries ";
+	color: $yellow;
+}
+
+button {
+	background-color: $black;
+	color: $yellow;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table a {
+	color: $black;
+	:visited {
+		color: $black;
+	}
+}

@@ -1,6 +1,8 @@
 <div class='country-info'>
 	<h1>Some data about {{country[0].countryName}}</h1>
 	<!-- Insert country flag image via: <img src="http://www.geonames.org/flags/x/??.gif" />, where ?? stands for a two letter, lowercase country code. -->
+	<button><a href="#/">Home</a></button>
+	<button><a href="#/countries">Browse Countries</a></button>
 	<table>
 		<tr>
 			<td>Population of Country:</td>
@@ -35,7 +37,6 @@
 			<img ng-src="http://www.geonames.org/flags/x/{{country[0].countryCode.toLowerCase()}}.gif" />
 		</div>
 	</section>
-
 	<button><a href="#/">Home</a></button>
 	<button><a href="#/countries">Browse Countries</a></button>
 </div>

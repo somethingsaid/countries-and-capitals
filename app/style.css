@@ -1,0 +1,33 @@
+html {
+  box-sizing: border-box;
+  background-color: #DFE2DB; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+a {
+  text-decoration: none; }
+
+button a {
+  color: #FFF056; }
+  button a :visited {
+    color: #FFF056; }
+
+.title h1 {
+  color: #191919; }
+
+.title h1::before {
+  content: "Countries ";
+  color: #FFF056; }
+
+button {
+  background-color: #191919;
+  color: #FFF056; }
+
+table {
+  border-collapse: collapse; }
+
+table a {
+  color: #191919; }
+  table a :visited {
+    color: #191919; }
